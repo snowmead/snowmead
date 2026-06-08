@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+import { SOCIALS } from '../consts';
+---
+
+<Base title="About" description="A little about Michael Assaf (snowmead).">
+  <h1
+    class="mb-8 text-3xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100"
+  >
+    About
+  </h1>
+
+  <div
+    class="prose prose-zinc max-w-none prose-a:text-sky-600 hover:prose-a:text-sky-500 dark:prose-invert dark:prose-a:text-sky-400"
+  >
+    <p>
+      I'm <strong>Michael Assaf</strong>, a software engineer who goes by
+      <strong>snowmead</strong> in most places online. I like building things
+      that are simple on the outside and considered on the inside.
+    </p>
+    <p>
+      This is my corner of the internet for writing down what I'm working on and
+      what I'm figuring out — notes more than essays.
+    </p>
+
+    <h2>Elsewhere</h2>
+    <ul>
+      {
+        SOCIALS.map((social) => (
+          <li>
+            <a href={social.href} target="_blank" rel="me noopener noreferrer">
+              {social.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Base>

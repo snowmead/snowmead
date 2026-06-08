@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 5);
+---
+
+<Base>
+  <section class="mb-16">
+    <h1
+      class="text-3xl font-semibold tracking-tight text-balance text-zinc-900 dark:text-zinc-100"
+    >
+      I build systems and write about what I learn.
+    </h1>
+    <p class="mt-4 text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
+      Software engineer, also known as <span class="font-medium text-zinc-900 dark:text-zinc-100">snowmead</span>. This is where I keep my notes.
+    </p>
+  </section>
+
+  <section>
+    {
+      posts.length === 0 ? (
+        <p class="text-zinc-500 dark:text-zinc-400">No posts yet — check back soon.</p>
+      ) : (
+        <ul class="-mx-3 flex flex-col">
+          {posts.map((post) => (
+            <li>
+              <a
+                href={`/blog/${post.id}/`}
+                class="group flex flex-col gap-0.5 rounded-lg px-3 py-2.5 transition-colors hover:bg-zinc-100 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6 dark:hover:bg-zinc-900"
+              >
+                <span class="font-medium text-zinc-800 dark:text-zinc-200">
+                  {post.data.title}
+                </span>
+                <span class="shrink-0 text-sm text-zinc-400 dark:text-zinc-500">
+                  <FormattedDate date={post.data.pubDate} />
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    <a
+      href="/blog"
+      class="mt-6 ml-3 inline-block text-sm text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+    >
+      All posts →
+    </a>
+  </section>
+</Base>

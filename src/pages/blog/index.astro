@@ -1,0 +1,43 @@
+---
+import Base from '../../layouts/Base.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<Base title="Blog" description="Everything I've written so far.">
+  <h1
+    class="mb-10 text-3xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100"
+  >
+    Blog
+  </h1>
+
+  {
+    posts.length === 0 ? (
+      <p class="text-zinc-500 dark:text-zinc-400">No posts yet — check back soon.</p>
+    ) : (
+      <ul class="flex flex-col gap-10">
+        {posts.map((post) => (
+          <li>
+            <article>
+              <a href={`/blog/${post.id}/`} class="group block">
+                <h2 class="text-xl font-semibold tracking-tight text-zinc-900 transition-colors group-hover:text-sky-600 dark:text-zinc-100 dark:group-hover:text-sky-400">
+                  {post.data.title}
+                </h2>
+                <p class="mt-1 text-sm text-zinc-400 dark:text-zinc-500">
+                  <FormattedDate date={post.data.pubDate} />
+                </p>
+                <p class="mt-2 text-zinc-600 dark:text-zinc-400">
+                  {post.data.description}
+                </p>
+              </a>
+            </article>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</Base>

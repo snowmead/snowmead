@@ -1,0 +1,28 @@
+---
+import { SOCIALS, SITE_TITLE } from '../consts';
+
+const year = new Date().getFullYear();
+---
+
+<footer
+  class="mt-12 flex flex-col items-center justify-between gap-4 py-10 text-sm text-zinc-500 sm:flex-row dark:text-zinc-400"
+>
+  <p>&copy; {year} {SITE_TITLE}</p>
+
+  <ul class="flex items-center gap-5">
+    {
+      SOCIALS.map((social) => (
+        <li>
+          <a
+            href={social.href}
+            target="_blank"
+            rel="me noopener noreferrer"
+            class="transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
+          >
+            {social.name}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</footer>
