@@ -11,6 +11,7 @@ interface Props {
   updatedDate?: Date;
   tags?: string[];
   headings?: MarkdownHeading[];
+  ogImage?: string;
 }
 
 const {
@@ -20,10 +21,11 @@ const {
   updatedDate,
   tags = [],
   headings = [],
+  ogImage,
 } = Astro.props;
 ---
 
-<Base title={title} description={description}>
+<Base title={title} description={description} image={ogImage}>
   <TableOfContents headings={headings} />
 
   <article>

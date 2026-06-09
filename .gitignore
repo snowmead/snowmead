@@ -5,6 +5,12 @@ dist/
 # wrangler / cloudflare
 .wrangler/
 
+# generated icons + social cards (rebuilt by scripts/generate-og.mjs at build)
+public/favicon.ico
+public/apple-touch-icon.png
+public/og.png
+public/og/
+
 # dependencies
 node_modules/
 
