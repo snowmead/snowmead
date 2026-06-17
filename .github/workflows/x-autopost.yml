@@ -1,0 +1,69 @@
+name: X auto-post
+
+# Announces blog posts on X. On a PR it previews the tweet in a sticky comment;
+# on merge to main it posts for real and commits the updated ledger.
+# Logic + char budgeting live in scripts/x-post.mjs.
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths: ['src/content/blog/**']
+  push:
+    branches: [main]
+    # Ledger commits only touch .x-posts.json, so they never re-trigger this.
+    paths: ['src/content/blog/**']
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  preview:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+      - name: Build preview
+        run: bun scripts/x-post.mjs --preview > preview.md
+      - name: Upsert sticky PR comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('preview.md', 'utf8');
+            const marker = '<!-- x-autopost-preview -->';
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+            const { data: comments } = await github.rest.issues.listComments({
+              owner, repo, issue_number, per_page: 100,
+            });
+            const existing = comments.find((c) => c.body.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({ owner, repo, comment_id: existing.id, body });
+            } else {
+              await github.rest.issues.createComment({ owner, repo, issue_number, body });
+            }
+
+  publish:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+      - name: Post to X
+        run: bun scripts/x-post.mjs --publish
+        env:
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+      - name: Commit ledger
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .x-posts.json
+          git diff --cached --quiet || git commit -m "chore: update X post ledger [skip ci]"
+          git push

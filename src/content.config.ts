@@ -13,6 +13,13 @@ const blog = defineCollection({
     updatedDate: z.coerce.date().optional(),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
+    // Social auto-posting (scripts/x-post.mjs). All optional:
+    //   tweet: false      -> never announce this post on X
+    //   tweetText         -> override the auto-composed announcement text
+    //   tweetUpdate       -> when set/changed, thread an "Updated" reply on X
+    tweet: z.boolean().default(true),
+    tweetText: z.string().optional(),
+    tweetUpdate: z.string().optional(),
   }),
 });
 
