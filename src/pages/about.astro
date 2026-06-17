@@ -1,6 +1,53 @@
 ---
 import Base from '../layouts/Base.astro';
-import { SOCIALS } from '../consts';
+import Timeline from '../components/Timeline.astro';
+
+const EXPERIENCE = [
+  {
+    name: 'Moonsong Labs',
+    location: 'Remote',
+    period: '2023 – Present',
+    summary:
+      'Low-level Solana programs in Pinocchio and Rust decentralized storage on Polkadot — protocol design, on-chain programs end to end, and AI tooling.',
+    roles: [{ title: 'Senior Blockchain Engineer', period: '2023 – Present' }],
+  },
+  {
+    name: 'Unity',
+    location: 'Montreal, QC',
+    period: '2022 – 2023',
+    summary:
+      'Async REST APIs managing millions of in-game items, TypeScript backend services, and GCP/Kubernetes infrastructure.',
+    roles: [{ title: 'Software Developer', period: '2022 – 2023' }],
+  },
+  {
+    name: 'National Bank of Canada',
+    location: 'Montreal, QC',
+    period: '2018 – 2022',
+    summary:
+      'Grew from Java financial services into cloud — migrating SWIFT workloads to AWS with infrastructure-as-code and CI/CD in a regulated environment.',
+    roles: [
+      { title: 'Cloud & DevOps Engineer', period: '2021 – 2022' },
+      { title: 'Senior Full-Stack Developer', period: '2020 – 2021' },
+      { title: 'Java Developer', period: '2018 – 2020' },
+    ],
+  },
+];
+
+const EDUCATION = [
+  {
+    name: 'Polkadot Blockchain Academy',
+    period: '2023',
+    summary:
+      'Intensive graded program in cryptography, consensus (BABE/GRANDPA), P2P systems, Substrate, FRAME, XCM, and light clients. Perfect score on the final assignment.',
+    roles: [{ title: "Engineer's Degree", period: '2023' }],
+  },
+  {
+    name: 'John Abbott College',
+    location: 'Montreal, QC',
+    period: '2015 – 2018',
+    roles: [{ title: 'DEC, Computer Science', period: '2015 – 2018' }],
+  },
+];
 ---
 
 <Base title="About" description="A little about Michael Assaf (snowmead).">
@@ -10,25 +57,21 @@ import { SOCIALS } from '../consts';
     About
   </h1>
 
-  <div
-    class="prose prose-zinc max-w-none prose-a:text-sky-600 hover:prose-a:text-sky-500 dark:prose-invert dark:prose-a:text-sky-400"
-  >
-    <p>
-      I'm Michael Assaf, a software engineer who goes by snowmead. This is
-      where I write down what I'm working on.
-    </p>
+  <section class="mt-12">
+    <h2
+      class="mb-6 text-xs font-semibold tracking-wider text-zinc-500 uppercase dark:text-zinc-400"
+    >
+      Where I've worked
+    </h2>
+    <Timeline items={EXPERIENCE} />
+  </section>
 
-    <h2>Elsewhere</h2>
-    <ul>
-      {
-        SOCIALS.map((social) => (
-          <li>
-            <a href={social.href} target="_blank" rel="me noopener noreferrer">
-              {social.name}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </div>
+  <section class="mt-12">
+    <h2
+      class="mb-6 text-xs font-semibold tracking-wider text-zinc-500 uppercase dark:text-zinc-400"
+    >
+      Education
+    </h2>
+    <Timeline items={EDUCATION} />
+  </section>
 </Base>

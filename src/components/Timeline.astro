@@ -1,0 +1,65 @@
+---
+interface Role {
+  title: string;
+  period: string;
+}
+
+interface TimelineItem {
+  name: string;
+  location?: string;
+  period: string;
+  summary?: string;
+  roles: Role[];
+}
+
+interface Props {
+  items: TimelineItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<ol class="relative ml-1 border-l border-zinc-200 dark:border-zinc-800">
+  {
+    items.map((item) => (
+      <li class="relative pb-8 pl-6 last:pb-0">
+        <span class="absolute top-1.5 -left-[5px] h-2.5 w-2.5 rounded-full bg-zinc-300 ring-4 ring-white dark:bg-zinc-700 dark:ring-zinc-950" />
+
+        <div class="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+          <h3 class="font-medium text-zinc-900 dark:text-zinc-100">
+            {item.name}
+          </h3>
+          <span class="shrink-0 text-sm text-zinc-400 dark:text-zinc-500">
+            {item.period}
+          </span>
+        </div>
+
+        <p class="mt-0.5 text-sm text-zinc-600 dark:text-zinc-400">
+          {item.roles.length === 1 ? item.roles[0].title : item.location}
+          {item.roles.length === 1 && item.location && ` · ${item.location}`}
+        </p>
+
+        {item.summary && (
+          <p class="mt-1.5 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
+            {item.summary}
+          </p>
+        )}
+
+        {item.roles.length > 1 && (
+          <ul class="mt-2.5 space-y-1.5">
+            {item.roles.map((role) => (
+              <li class="flex items-baseline justify-between gap-4 text-sm">
+                <span class="text-zinc-600 dark:text-zinc-400">
+                  {role.title}
+                </span>
+                <span class="shrink-0 text-zinc-400 dark:text-zinc-500">
+                  {role.period}
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </li>
+    ))
+  }
+</ol>
