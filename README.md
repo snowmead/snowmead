@@ -1,4 +1,4 @@
-Rust systems & protocol engineer based in Montreal.
+Rust systems & protocol engineer based in Montreal ❄️🐝
 
 [snowmead.com](https://snowmead.com) · [X](https://x.com/snowmead) · [LinkedIn](https://www.linkedin.com/in/michael-assaf/)
 
