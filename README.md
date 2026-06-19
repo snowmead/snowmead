@@ -13,7 +13,8 @@ Previously working as a software engineer at Unity Technologies and National Ban
 
 ### Side projects
 
-- [rust-docs-mcp](https://github.com/snowmead/rust-docs-mcp). Rust crate docs and source analysis for coding agents. 129★, on crates.io.
+- [rust-docs-mcp](https://github.com/snowmead/rust-docs-mcp). Rust crate docs and source analysis for coding agents.
 - [oxgraph](https://github.com/oxgraph/oxgraph). Zero-copy `no_std` graph and hypergraph engine for Rust.
 - [oxcode](https://github.com/oxgraph/oxcode). Code-intelligence indexer on oxgraph, tree-sitter plus personalized PageRank.
 - [stackless](https://github.com/snowmead/stackless). Disposable full-stack environments from one command.
+- [shapes](https://github.com/shapes-fyi/shapes). Record the intent, constraints, and decisions that shape a project increasing agent reliability.
