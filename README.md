@@ -8,6 +8,7 @@ At [Moonsong Labs](https://moonsonglabs.com), building Solana and blockchain pro
 
 - [solana-payment-channels](https://github.com/Moonsong-Labs/solana-payment-channels). Low-level Solana program (Pinocchio, `no_std`) for machine-to-machine payments. [Writeup](https://snowmead.com/blog/safety-patterns-low-level-solana-programs).
 - [storage-hub](https://github.com/Moonsong-Labs/storage-hub). Decentralized storage for Substrate based blockchains.
+- [substrate-mcp](https://github.com/Moonsong-Labs/substrate-mcp). MCP server with tools for working with Substrate-based blockchains.
 
 Previously working as a software engineer at Unity Technologies and National Bank of Canada.
 
