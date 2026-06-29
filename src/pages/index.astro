@@ -6,6 +6,60 @@ import { getCollection } from 'astro:content';
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 5);
+
+const projects = [
+  {
+    name: 'StorageHub',
+    url: 'https://github.com/Moonsong-Labs/storage-hub',
+    description:
+      'Decentralized storage parachain for the Polkadot ecosystem, built from the ground up over ~2 years. Lead engineer across 130+ merged PRs, owning the runtime, node, and client software end to end — Merkle-forest storage proofs, a self-healing reconciliation engine, and multi-node test harnesses.',
+  },
+  {
+    name: 'Solana payment channels',
+    url: 'https://github.com/solana-foundation/payment-channels',
+    description:
+      'Low-level Solana program for agentic, machine-to-machine payments (MPP / x402), built end to end in Pinocchio (zero-copy, no_std). Off-chain Ed25519 cumulative vouchers settle on chain over SPL Token and Token-2022, with Codama-generated Rust and TypeScript clients.',
+  },
+  {
+    name: 'substrate-mcp',
+    url: 'https://github.com/Moonsong-Labs/substrate-mcp',
+    description:
+      'MCP server for the Polkadot ecosystem, in Rust. Gives coding agents tools to explore chain metadata and state, decode and submit extrinsics, scaffold pallets, and analyze how Polkadot SDK releases impact a codebase.',
+  },
+];
+
+const sideProjects = [
+  {
+    name: 'rust-docs-mcp',
+    url: 'https://github.com/snowmead/rust-docs-mcp',
+    description:
+      'MCP server that gives coding agents Rust crate docs, source-code analysis, dependency trees, and module structure. Around 18 tools, works offline from rustdoc JSON. Published on crates.io.',
+  },
+  {
+    name: 'oxgraph',
+    url: 'https://github.com/oxgraph/oxgraph',
+    description:
+      'Zero-copy, no_std graph and hypergraph engine for Rust. Traverses graphs in memory, over mmap, embedded, or in Postgres, with no unsafe.',
+  },
+  {
+    name: 'oxcode',
+    url: 'https://github.com/oxgraph/oxcode',
+    description:
+      'Code-intelligence indexer built on oxgraph: tree-sitter parsing plus personalized PageRank, served over CLI and MCP. Cut tokens 74% and tool calls 84% against a no-tool baseline; listed in the MCP Registry.',
+  },
+  {
+    name: 'stackless',
+    url: 'https://github.com/snowmead/stackless',
+    description:
+      'Rust CLI for disposable full-stack environments. One command spawns a named, leased, isolated copy of a product, proves it healthy, and tears it down. Backends for local, Render, and Vercel.',
+  },
+  {
+    name: 'shapes',
+    url: 'https://github.com/shapes-fyi/shapes',
+    description:
+      'Context system that makes coding agents reliable in long-lived projects. Captures a project’s architecture, goals, and decisions as durable records (akin to ADRs) so agents grasp the whole system as it evolves, not just the code in front of them.',
+  },
+];
 ---
 
 <Base>
@@ -20,7 +74,66 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     </p>
   </section>
 
+  <section class="mb-16">
+    <h2
+      class="mb-4 text-xs font-semibold tracking-wider text-zinc-500 uppercase dark:text-zinc-400"
+    >
+      Projects
+    </h2>
+    <ul class="-mx-3 flex flex-col">
+      {projects.map((project) => (
+        <li>
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex flex-col gap-1 rounded-lg px-3 py-2.5 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-900"
+          >
+            <span class="font-medium text-zinc-800 group-hover:text-sky-600 dark:text-zinc-200 dark:group-hover:text-sky-400">
+              {project.name}
+            </span>
+            <span class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+              {project.description}
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="mb-16">
+    <h2
+      class="mb-4 text-xs font-semibold tracking-wider text-zinc-500 uppercase dark:text-zinc-400"
+    >
+      Side projects
+    </h2>
+    <ul class="-mx-3 flex flex-col">
+      {sideProjects.map((project) => (
+        <li>
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex flex-col gap-1 rounded-lg px-3 py-2.5 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-900"
+          >
+            <span class="font-medium text-zinc-800 group-hover:text-sky-600 dark:text-zinc-200 dark:group-hover:text-sky-400">
+              {project.name}
+            </span>
+            <span class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+              {project.description}
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
   <section>
+    <h2
+      class="mb-4 text-xs font-semibold tracking-wider text-zinc-500 uppercase dark:text-zinc-400"
+    >
+      Writing
+    </h2>
     {
       posts.length === 0 ? (
         <p class="text-zinc-500 dark:text-zinc-400">No posts yet — check back soon.</p>
