@@ -14,6 +14,7 @@ Previously working as a software engineer at Unity Technologies and National Ban
 
 ### Side projects
 
+- [specdrs](https://github.com/snowmead/specdrs). Engineering claims in the crate, next to the code they govern, so agents stop inventing decisions you never agreed to.
 - [rust-docs-mcp](https://github.com/snowmead/rust-docs-mcp). Rust crate docs and source analysis for coding agents.
 - [oxgraph](https://github.com/oxgraph/oxgraph). Zero-copy `no_std` graph and hypergraph engine for Rust.
 - [oxcode](https://github.com/oxgraph/oxcode). Code-intelligence indexer on oxgraph, tree-sitter plus personalized PageRank.

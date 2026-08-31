@@ -30,6 +30,12 @@ const projects = [
 
 const sideProjects = [
   {
+    name: 'specdrs',
+    url: 'https://github.com/snowmead/specdrs',
+    description:
+      'Rust crate and agent skill that records accepted engineering decisions as claims next to the code they govern. Agents grill objectives, constraints, and assumptions, then check the implementation against that map. Published on crates.io.',
+  },
+  {
     name: 'rust-docs-mcp',
     url: 'https://github.com/snowmead/rust-docs-mcp',
     description:
@@ -78,60 +84,6 @@ const sideProjects = [
     <h2
       class="mb-4 text-xs font-semibold tracking-wider text-zinc-500 uppercase dark:text-zinc-400"
     >
-      Projects
-    </h2>
-    <ul class="-mx-3 flex flex-col">
-      {projects.map((project) => (
-        <li>
-          <a
-            href={project.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group flex flex-col gap-1 rounded-lg px-3 py-2.5 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-900"
-          >
-            <span class="font-medium text-zinc-800 group-hover:text-sky-600 dark:text-zinc-200 dark:group-hover:text-sky-400">
-              {project.name}
-            </span>
-            <span class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-              {project.description}
-            </span>
-          </a>
-        </li>
-      ))}
-    </ul>
-  </section>
-
-  <section class="mb-16">
-    <h2
-      class="mb-4 text-xs font-semibold tracking-wider text-zinc-500 uppercase dark:text-zinc-400"
-    >
-      Side projects
-    </h2>
-    <ul class="-mx-3 flex flex-col">
-      {sideProjects.map((project) => (
-        <li>
-          <a
-            href={project.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group flex flex-col gap-1 rounded-lg px-3 py-2.5 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-900"
-          >
-            <span class="font-medium text-zinc-800 group-hover:text-sky-600 dark:text-zinc-200 dark:group-hover:text-sky-400">
-              {project.name}
-            </span>
-            <span class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-              {project.description}
-            </span>
-          </a>
-        </li>
-      ))}
-    </ul>
-  </section>
-
-  <section>
-    <h2
-      class="mb-4 text-xs font-semibold tracking-wider text-zinc-500 uppercase dark:text-zinc-400"
-    >
       Writing
     </h2>
     {
@@ -164,5 +116,59 @@ const sideProjects = [
     >
       All posts →
     </a>
+  </section>
+
+  <section class="mb-16">
+    <h2
+      class="mb-4 text-xs font-semibold tracking-wider text-zinc-500 uppercase dark:text-zinc-400"
+    >
+      Projects
+    </h2>
+    <ul class="-mx-3 flex flex-col">
+      {projects.map((project) => (
+        <li>
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex flex-col gap-1 rounded-lg px-3 py-2.5 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-900"
+          >
+            <span class="font-medium text-zinc-800 group-hover:text-sky-600 dark:text-zinc-200 dark:group-hover:text-sky-400">
+              {project.name}
+            </span>
+            <span class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+              {project.description}
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section>
+    <h2
+      class="mb-4 text-xs font-semibold tracking-wider text-zinc-500 uppercase dark:text-zinc-400"
+    >
+      Side projects
+    </h2>
+    <ul class="-mx-3 flex flex-col">
+      {sideProjects.map((project) => (
+        <li>
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex flex-col gap-1 rounded-lg px-3 py-2.5 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-900"
+          >
+            <span class="font-medium text-zinc-800 group-hover:text-sky-600 dark:text-zinc-200 dark:group-hover:text-sky-400">
+              {project.name}
+            </span>
+            <span class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+              {project.description}
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
   </section>
 </Base>
